@@ -13,17 +13,16 @@ export default function Endereco() {
   const [erroCep, setErroCep] = useState(false);
   const [cepInvalido, setCepInvalido] = useState(false);
 
-  function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleInput(e: React.ChangeEvent<HTMLInputElement>){
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    if (name === "cep") {
+    if (name === "cep"){
       setErroCep(value.length > 0 && value.length < 8);
       setCepInvalido(false);
     }
   }
-
   useEffect(() => {
-    if (form.cep.length === 8) {
+    if (form.cep.length === 8){
       setErroCep(false);
       fetch(`https://viacep.com.br/ws/${form.cep}/json/`)
         .then(r => r.json())
